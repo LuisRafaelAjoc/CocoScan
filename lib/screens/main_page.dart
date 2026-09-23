@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -69,7 +71,9 @@ class MainPage extends StatelessWidget {
                 ),
 
                 ElevatedButton(
-                    onPressed: () {}, 
+                    onPressed: () {
+                      SystemNavigator.pop();
+                    }, 
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)
