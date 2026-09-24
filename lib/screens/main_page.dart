@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../services/image_picker_service.dart'; // for usage of device camera and image gallery
 
 
 class MainPage extends StatelessWidget {
