@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../services/image_picker_service.dart'; // for usage of device camera and image gallery
 
+import 'scan_history_page.dart';
+
 
 class MainPage extends StatelessWidget {
   MainPage({super.key});
@@ -80,7 +82,15 @@ class MainPage extends StatelessWidget {
                 ),
 
                 ElevatedButton(
-                  onPressed: () {}, 
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            const ScanHistoryPage(),
+                      ),
+                    );
+                  }, 
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)
