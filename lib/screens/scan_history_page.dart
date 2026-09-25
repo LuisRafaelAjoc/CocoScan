@@ -42,7 +42,11 @@ class _ScanHistoryPageState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Scan History'),
+        title: const Text('Scan History', style: TextStyle(color: Colors.white),),
+        backgroundColor: Color(0xff008d55),
+        iconTheme: IconThemeData(
+          color: Colors.white
+        ),
       ),
 
       body: FutureBuilder<List<Scan>>(
@@ -74,6 +78,7 @@ class _ScanHistoryPageState
                 'No scans yet.',
                 style: TextStyle(
                   fontSize: 18,
+                  color: Color(0xff008d55)
                 ),
               ),
             );
@@ -81,6 +86,7 @@ class _ScanHistoryPageState
 
           return RefreshIndicator(
             onRefresh: _refresh,
+            color: Color(0xff008d55),
 
             child: ListView.builder(
               itemCount: scans.length,
@@ -109,8 +115,7 @@ class _ScanHistoryPageState
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                            ScanDetailPage(
+                        builder: (context) => ScanDetailPage(
                           scanId: scan.id!,
                         ),
                       ),

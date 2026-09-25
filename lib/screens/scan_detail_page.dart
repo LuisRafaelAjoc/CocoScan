@@ -57,8 +57,10 @@ class _ScanDetailPageState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Scan #${widget.scanId}',
+        title: Text( 'Scan #${widget.scanId}', style: TextStyle(color: Colors.white)),
+        backgroundColor: Color(0xff008d55),
+        iconTheme: IconThemeData(
+          color: Colors.white
         ),
       ),
 
@@ -128,7 +130,7 @@ class _ScanDetailPageState
 
           const SizedBox(height: 25),
 
-          // PREDICTIONS
+          // Predictions
           const Text(
             'Predictions',
             style: TextStyle(
@@ -231,6 +233,7 @@ class _ScanDetailPageState
 
             LinearProgressIndicator(
               value: prediction.confidence,
+              color: Color(0xff008d55),
             ),
 
             const SizedBox(height: 5),
