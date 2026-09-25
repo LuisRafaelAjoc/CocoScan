@@ -40,6 +40,7 @@ class DatabaseHelper {
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         image_path TEXT NOT NULL,
         scanned_at TEXT NOT NULL,
+        model_version TEXT NOT NULL
       )
     ''');
 
