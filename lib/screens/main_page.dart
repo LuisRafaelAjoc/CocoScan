@@ -1,9 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../services/image_picker_service.dart'; // for usage of device camera and image gallery
 
 
 class MainPage extends StatelessWidget {
-  const MainPage({super.key});
+  MainPage({super.key});
+
+  final ImagePickerService _imagePickerService = ImagePickerService(); // instance of image picker class to access camera and gallery functionality
+
+  Future<void> _takePhoto() async {
+    final image = await _imagePickerService.takePhoto();
+
+    if (image != null) {
+      print('Selected image: ${image.path}');
+    }
+  }
+
+  Future<void> _pickFromGallery() async {
+    final image = await _imagePickerService.pickFromGallery();
+
+    if (image != null) {
+      print('Selected image: ${image.path}');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +48,7 @@ class MainPage extends StatelessWidget {
                     // ElevatedButton.icon(onPressed: () {}, icon: const Icon(Icons.photo_library), label: const Text('Browse Gallery'))
                     
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: _takePhoto,
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)
@@ -44,7 +63,7 @@ class MainPage extends StatelessWidget {
                     ),
                     
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: _pickFromGallery,
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)
