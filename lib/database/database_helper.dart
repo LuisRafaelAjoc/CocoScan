@@ -39,7 +39,7 @@ class DatabaseHelper {
       CREATE TABLE scans (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         image_path TEXT NOT NULL,
-        scanned_at TEXT NOT NULL,
+        scanned_at TEXT NOT NULL
       )
     ''');
 
