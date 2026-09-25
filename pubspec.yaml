@@ -64,7 +64,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets: 
     - assets/
-    - assets/models/cocoscan_efficientnetb4_offline.tflite
+    - assets/models/cocoscan_efficientnetb4_v1_portable.tflite
     - assets/models/class_labels.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
