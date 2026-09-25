@@ -38,6 +38,8 @@ dependencies:
   sqflite: ^2.4.4
   path: ^1.9.1
   path_provider: ^2.1.6
+  tflite_flutter: ^0.12.1
+  image: ^4.10.1
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +66,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets: 
     - assets/
+    - assets/models/cocoscan_efficientnetb4_v1_portable.tflite
+    - assets/models/class_labels.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
