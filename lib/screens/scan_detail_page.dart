@@ -126,10 +126,6 @@ class _ScanDetailPageState
 
           const SizedBox(height: 5),
 
-          Text(
-            'Model: ${scan.modelVersion}',
-          ),
-
           const SizedBox(height: 25),
 
           // PREDICTIONS
