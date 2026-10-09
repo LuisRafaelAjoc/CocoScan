@@ -27,8 +27,71 @@ class _ScanHistoryPageState
     _loadScans();
   }
 
-  void _loadScans() {
+  Future<void> _loadScans() async {
     _scans = DatabaseHelper.instance.getAllScans();
+  }
+
+  Future<void> _deleteScan(Scan scan) async {
+    if (scan.id == null) return;
+
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) {
+        return AlertDialog(
+          title: const Text('Delete Scan?'),
+          content: const Text(
+            'This will permanently delete this scan, '
+            'its predictions, and its saved image.',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(dialogContext, false);
+              },
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pop(dialogContext, true);
+              },
+              child: const Text(
+                'Delete',
+                style: TextStyle(color: Colors.red),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+
+    if (confirmed != true || !mounted) return;
+
+    try {
+      // Remove the scan and its predictions from SQLite.
+      await DatabaseHelper.instance.deleteScan(scan.id!);
+
+      // Remove the saved image.
+      await ImageStorageService.deleteImage(scan.imagePath);
+
+      // Refresh the displayed history.
+      await _loadScans();
+
+      if (!mounted) return;
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Scan deleted successfully.'),
+        ),
+      );
+    } catch (e) {
+      if (!mounted) return;
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Failed to delete scan: $e'),
+        ),
+      );
+    }
   }
 
   Future<void> _refresh() async {
@@ -108,8 +171,17 @@ class _ScanHistoryPageState
                     _formatDate(scan.scannedAt),
                   ),
 
-                  trailing: const Icon(
-                    Icons.chevron_right,
+                  // trailing: const Icon(
+                  //   Icons.chevron_right,
+                  // ),
+
+                  trailing: IconButton(
+                    icon: const Icon(
+                      Icons.delete_outline,
+                      color: Colors.red,
+                    ),
+                    tooltip: 'Delete scan',
+                    onPressed: () => _deleteScan(scan),
                   ),
 
                   onTap: () {
