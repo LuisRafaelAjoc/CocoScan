@@ -167,7 +167,7 @@ class _ScanHistoryPageState
                   ),
 
                   title: Text(
-                    'Scan #${scan.id}',
+                    'Scan #${scans.length - index}',
                   ),
 
                   subtitle: Text(
@@ -193,6 +193,7 @@ class _ScanHistoryPageState
                       MaterialPageRoute(
                         builder: (context) => ScanDetailPage(
                           scanId: scan.id!,
+                          displayNumber: scans.length - index,
                         ),
                       ),
                     );
