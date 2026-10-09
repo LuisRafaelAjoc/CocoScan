@@ -8,10 +8,13 @@ import '../models/prediction.dart';
 
 class ScanDetailPage extends StatefulWidget {
   final int scanId;
+  final int displayNumber;
+
 
   const ScanDetailPage({
     super.key,
     required this.scanId,
+    required this.displayNumber,
   });
 
   @override
@@ -57,7 +60,7 @@ class _ScanDetailPageState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text( 'Scan #${widget.scanId}', style: TextStyle(color: Colors.white)),
+        title: Text( 'Scan #${widget.displayNumber}', style: TextStyle(color: Colors.white)),
         backgroundColor: Color(0xff008d55),
         iconTheme: IconThemeData(
           color: Colors.white

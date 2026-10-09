@@ -193,6 +193,7 @@ class _ScanHistoryPageState
                       MaterialPageRoute(
                         builder: (context) => ScanDetailPage(
                           scanId: scan.id!,
+                          displayNumber: scans.length - index,
                         ),
                       ),
                     );
