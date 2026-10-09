@@ -23,12 +23,13 @@ class _ScanHistoryPageState
   @override
   void initState() {
     super.initState();
-
-    _loadScans();
+    _scans = DatabaseHelper.instance.getAllScans();
   }
 
-  Future<void> _loadScans() async {
-    _scans = DatabaseHelper.instance.getAllScans();
+  void _loadScans() async {
+    setState(() {
+      _scans = DatabaseHelper.instance.getAllScans();
+    });
   }
 
   Future<void> _deleteScan(Scan scan) async {
@@ -74,7 +75,7 @@ class _ScanHistoryPageState
       await ImageStorageService.deleteImage(scan.imagePath);
 
       // Refresh the displayed history.
-      await _loadScans();
+      _loadScans();
 
       if (!mounted) return;
 
@@ -95,11 +96,13 @@ class _ScanHistoryPageState
   }
 
   Future<void> _refresh() async {
+    final future = DatabaseHelper.instance.getAllScans();
+
     setState(() {
-      _loadScans();
+      _scans = future;
     });
 
-    await _scans;
+    await future;
   }
 
   @override
