@@ -133,17 +133,19 @@ class DatabaseHelper {
   Future<void> deleteScan(int scanId) async {
     final db = await database;
 
-    await db.delete(
-      'predictions',
-      where: 'scan_id = ?',
-      whereArgs: [scanId],
-    );
+    await db.transaction((txn) async {
+      await txn.delete(
+        'predictions',
+        where: 'scan_id = ?',
+        whereArgs: [scanId],
+      );
 
-    await db.delete(
-      'scans',
-      where: 'id = ?',
-      whereArgs: [scanId],
-    );
+      await txn.delete(
+        'scans',
+        where: 'id = ?',
+        whereArgs: [scanId],
+      );
+    });
   }
 
   Future<void> close() async {
