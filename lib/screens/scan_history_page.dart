@@ -167,7 +167,7 @@ class _ScanHistoryPageState
                   ),
 
                   title: Text(
-                    'Scan #${scan.id}',
+                    'Scan #${scans.length - index}',
                   ),
 
                   subtitle: Text(
