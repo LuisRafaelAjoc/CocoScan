@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
+import '../services/image_storage_service.dart';
 import '../database/database_helper.dart';
 import '../models/scan.dart';
 import 'scan_detail_page.dart';
