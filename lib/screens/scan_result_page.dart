@@ -52,7 +52,7 @@ class ScanResultPage extends StatelessWidget {
 
             const SizedBox(height: 12),
 
-            ...predictions.map(
+            ...predictions.where((prediction) => prediction.confidence > 0.10).toList().map(
               (prediction) {
                 final percentage =
                     prediction.confidence * 100;
