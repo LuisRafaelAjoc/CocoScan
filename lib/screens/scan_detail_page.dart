@@ -52,7 +52,9 @@ class _ScanDetailPageState
 
     return _ScanDetails(
       scan: scan,
-      predictions: predictions,
+
+      // Get only predictions from scan with more than 10% confidence
+      predictions: predictions.where((prediction) => prediction.confidence > 0.10).toList() 
     );
   }
 
